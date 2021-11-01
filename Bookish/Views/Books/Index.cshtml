@@ -1,0 +1,17 @@
+﻿@model Bookish.Models.BooksViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    foreach (var book in @Model.books)
+    {
+        <p>@book</p>
+    }
+}
+
+
+
+
+
