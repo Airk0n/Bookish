@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using Bookish.Models.Database;
@@ -22,7 +23,8 @@ namespace Bookish.Services
         public IEnumerable<Book> GetAllBooks()
         {
             using var connection = new NpgsqlConnection(ConnectionString);
-            return connection.Query<Book>("SELECT id FROM books");
+            
+            return connection.Query<Book>("SELECT id,Title FROM books");
         }
         
     }

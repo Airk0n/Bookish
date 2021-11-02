@@ -5,9 +5,12 @@
 }
 
 @{
+    <h2>All The Books!:</h2>
     foreach (var book in @Model.Books)
     {
-        <p>Book : @book.Title</p>
+        <p>ID : @book.id</p>
+        <p>Title : @book.Title</p>
+        <br/>
     }
 }
 
