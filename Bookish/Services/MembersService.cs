@@ -13,19 +13,18 @@ namespace Bookish.Services
     }
     public class MembersService : IMemberService
     {
-        private const string ConnectionString =
-            "Server=10.50.2.92;Port=5432;Database=bookish;Username=postgres;Password=apprentice";
+        private readonly ConnectionService _connectionService = new ConnectionService();
         
         public IEnumerable<Member> GetAllMembers()
         {
-            using var connection = new NpgsqlConnection(ConnectionString);
+            using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
 
             return connection.Query<Member>("SELECT id,name FROM members");
         }
 
         public void CreateMember(CreateMemberEntryModel postModel)
         {
-            using var connection = new NpgsqlConnection(ConnectionString);
+            using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
 
             connection.Execute("INSERT INTO members (name) VALUES (@name);", postModel);
         }
