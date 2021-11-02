@@ -23,6 +23,7 @@ namespace Bookish.Controllers
         public IActionResult ViewAvailableBooks()
         {
             var viewModel = new BooksViewModel();
+            DbInteractions.test();
             return View(viewModel);
         }
 
