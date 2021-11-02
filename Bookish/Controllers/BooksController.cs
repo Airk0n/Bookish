@@ -20,7 +20,7 @@ namespace Bookish.Controllers
         }
         
         [HttpGet("")]
-        public IActionResult Index()
+        public IActionResult ViewAvailableBooks()
         {
             var viewModel = new BooksViewModel();
             return View(viewModel);

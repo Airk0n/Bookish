@@ -4,7 +4,7 @@ namespace Bookish.Models
 {
     public class BooksViewModel
     {
-        public List<string> books = new List<string> {"Thinking Fast and Slow", "Alien", "Sapiens"};
-        
+        public List<string> booksTheLibraryOwns = new List<string> {"Thinking Fast and Slow", "Alien", "Sapiens"};
+
     }
 }
