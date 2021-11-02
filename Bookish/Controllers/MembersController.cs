@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using Bookish.Models;
+using Bookish.Models.Request;
+using Bookish.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -8,19 +10,39 @@ namespace Bookish.Controllers
     [Route("/members")]
     public class MembersController : Controller
     {
-        private readonly ILogger<MembersController> _logger;
+        private readonly IMemberService _memberService;
 
-        public MembersController(ILogger<MembersController> logger)
+        public MembersController(IMemberService memberService)
         {
-            _logger = logger;
+            _memberService = memberService;
         }
         
         [HttpGet("")]
-        public IActionResult ViewAvaliableMembers()
+        public IActionResult ViewAvailableMembers()
         {
-            var viewModel = new MembersViewModel();
+            var members = _memberService.GetAllMembers();
+            var viewModel = new MembersViewModel {Members = members};
             return View(viewModel);
         }
+
+        [HttpGet("create")]
+        public IActionResult CreateMember()
+        {
+            return View();
+        }
+
+        [HttpPost("create")]
+        public IActionResult CreateMember(CreateMemberEntryModel newMember)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("CreateMember", newMember);
+            }
+            _memberService.CreateMember(newMember);
+            return RedirectToAction("ViewAvailableMembers");
+        }
+        
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
