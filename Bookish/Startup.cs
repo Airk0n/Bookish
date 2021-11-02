@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bookish.Controllers;
 using Bookish.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,7 @@ namespace Bookish
             services.AddTransient<IBookService, BookService>();
             services.AddTransient<IMemberService, MembersService>();
             services.AddTransient<IConnectionService, ConnectionService>();
+            services.AddTransient<IInventoryService, InventoryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

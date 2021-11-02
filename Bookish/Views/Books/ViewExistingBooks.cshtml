@@ -1,0 +1,20 @@
+﻿@model Bookish.Models.BooksViewModel
+
+@{
+    ViewData["Title"] = "Existing Books";
+}
+
+@{
+    <h2>All The Books!:</h2>
+    foreach (var book in @Model.Books)
+    {
+        <p>ID : @book.id</p>
+        <p>Title : @book.Title</p>
+        <br/>
+    }
+}
+
+
+
+
+

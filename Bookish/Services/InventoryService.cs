@@ -6,18 +6,18 @@ using Npgsql;
 
 namespace Bookish.Services
 {
-    public interface ICollectionService
+    public interface IInventoryService
     {
         IEnumerable<Book> GetOwnedBooks();
     }
-    public class CollectionService : ICollectionService
+    public class InventoryService : IInventoryService
     {
         private readonly ConnectionService _connectionService = new ConnectionService();
         public IEnumerable<Book> GetOwnedBooks()
         {
             using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
 
-            return connection.Query<Book>("SELECT id,Title FROM books"); //TODO: Needs to be specific to owned books, not just all the books that exist.
+            return connection.Query<Book>("SELECT books.id, title FROM books INNER JOIN inventory on books.id = inventory.books_pkey");
         }
     }
 }

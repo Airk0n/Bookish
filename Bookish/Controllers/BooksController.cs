@@ -21,7 +21,7 @@ namespace Bookish.Controllers
         }
         
         [HttpGet("")]
-        public IActionResult ViewAvailableBooks()
+        public IActionResult ViewExistingBooks()
         {
             var books = _bookService.GetAllBooks();
             var viewModel = new BooksViewModel {Books = books};
@@ -43,7 +43,7 @@ namespace Bookish.Controllers
             }
 
             _bookService.CreateBook(newBook);
-            return RedirectToAction("ViewAvailableBooks");
+            return RedirectToAction("ViewExistingBooks");
 
         }
 
