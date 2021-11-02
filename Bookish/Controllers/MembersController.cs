@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using Bookish.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Bookish.Models;
 
 namespace Bookish.Controllers
-{   
-    [Route("/books")]
-    public class BooksController : Controller
+{
+    [Route("/members")]
+    public class MembersController : Controller
     {
-        private readonly ILogger<BooksController> _logger;
+        private readonly ILogger<MembersController> _logger;
 
-        public BooksController(ILogger<BooksController> logger)
+        public MembersController(ILogger<MembersController> logger)
         {
             _logger = logger;
         }
         
         [HttpGet("")]
-        public IActionResult ViewAvailableBooks()
+        public IActionResult ViewAvaliableMembers()
         {
-            var viewModel = new BooksViewModel();
+            var viewModel = new MembersViewModel();
             return View(viewModel);
         }
 
