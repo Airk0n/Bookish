@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Bookish.Models;
+using Bookish.Models.Request;
 using Bookish.Services;
 
 namespace Bookish.Controllers
@@ -25,6 +26,25 @@ namespace Bookish.Controllers
             var books = _bookService.GetAllBooks();
             var viewModel = new BooksViewModel {Books = books};
             return View(viewModel);
+        }
+        
+        [HttpGet("create")]
+        public IActionResult CreateBook()
+        {
+            return View();
+        }
+        
+        [HttpPost("create")]
+        public IActionResult CreateBook(CreateBookEntryModel newBook)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("CreateBook", newBook);
+            }
+
+            _bookService.CreateBook(newBook);
+            return RedirectToAction("ViewAvailableBooks");
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

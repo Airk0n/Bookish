@@ -1,0 +1,16 @@
+@model Bookish.Models.Request.CreateBookEntryModel
+
+@{
+    Layout = null;
+}
+
+<div class="create-new-book">
+    <form method = "post" action="/books/create">
+        <fieldset>
+            <legend>Create a New Post</legend>
+            <label for="Title">Title</label><br/>
+            <input type="text" id="Title" name="Title" alt="user id input box"/><br/>
+            <input type="submit"/>
+        </fieldset>
+    </form>
+</div>
