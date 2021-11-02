@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using Bookish.Models.Database;
 
 namespace Bookish.Models
 {
     public class BooksViewModel
     {
-        public List<string> booksTheLibraryOwns = new List<string> {"Thinking Fast and Slow", "Alien", "Sapiens"};
-
+        public IEnumerable<Book> Books { get; set; }
     }
 }

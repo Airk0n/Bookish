@@ -5,9 +5,9 @@
 }
 
 @{
-    foreach (var book in @Model.booksTheLibraryOwns)
+    foreach (var book in @Model.Books)
     {
-        <p>@book</p>
+        <p>Book : @book.Title</p>
     }
 }
 
