@@ -18,7 +18,7 @@ namespace Bookish.Services
     public class BookService : IBookService
     {
         private const string ConnectionString =
-            "Server=localhost;Port=5432;Database=bookish;Username=postgres;Password=apprentice";
+            "Server=10.50.2.92;Port=5432;Database=bookish;Username=postgres;Password=apprentice";
 
         public IEnumerable<Book> GetAllBooks()
         {
