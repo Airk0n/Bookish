@@ -14,6 +14,8 @@ namespace Bookish.Services
     {
         IEnumerable<Book> GetAllBooks();
         void CreateBook(CreateBookEntryModel postModel);
+
+        IEnumerable<Book> SearchBook(string searchCriteria);
     }
 
 
@@ -34,6 +36,15 @@ namespace Bookish.Services
 
             connection.Execute("INSERT INTO books (title) VALUES (@Title);", postModel);
             
+        }
+
+        public IEnumerable<Book> SearchBook(string searchCriteria)
+        {
+            using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
+            
+            var parameters = new { Title = searchCriteria};
+            
+            return connection.Query<Book>("SELECT * FROM books WHERE title = @Title;", parameters);
         }
     }
 }

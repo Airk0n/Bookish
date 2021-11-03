@@ -2,10 +2,11 @@
 
 @{
     ViewData["Title"] = "Existing Books";
+    Layout = "_Books";
 }
 
 @{
-    <h2>All The Books!:</h2>
+    <h4>All The Books</h4>
     foreach (var book in @Model.Books)
     {
         <p>ID : @book.id</p>

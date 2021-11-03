@@ -46,7 +46,15 @@ namespace Bookish.Controllers
             return RedirectToAction("ViewExistingBooks");
 
         }
-
+        
+        [HttpGet("search")]
+        public IActionResult SearchBook(string searchCriteria)
+        {
+            var matchingBooks = _bookService.SearchBook(searchCriteria);
+            var viewModel = new BooksViewModel {Books = matchingBooks};
+            return View(viewModel);
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

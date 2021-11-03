@@ -1,0 +1,28 @@
+@model Bookish.Models.BooksViewModel
+
+@{
+    ViewData["Title"] = "Search Books";
+    Layout = "_Books";
+}
+
+
+<div class="search-book">
+    <h2>Search for a book by title</h2>
+    <form method="get" class="form-inline" action="/books/search">
+        <div class="form-group">
+            <label for="searchCriteria">Title</label><br/>
+            <input class="form-control mx-2" type="text" id="searchCriteria" name="searchCriteria" alt="user id input box"/><br/>
+        </div>
+        <input class="btn btn-secondary" type="submit"/>
+    </form>
+</div>
+
+@{
+    <h3>Books matching criteria:</h3>
+    foreach (var book in @Model.Books)
+    {
+        <p>ID : @book.id</p>
+        <p>Title : @book.Title</p>
+        <br/>
+    }
+}
