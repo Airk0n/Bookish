@@ -6,7 +6,7 @@
     }
     public class ConnectionService : IConnectionService
     {
-        private string connectionString = "Server=10.50.2.92;Port=5432;Database=bookish;Username=postgres;Password=apprentice";
+        private string connectionString = "Server=10.50.2.80;Port=5432;Database=bookish;Username=postgres;Password=apprentice";
         public string ConnectionString
         {
             get { return connectionString;}
