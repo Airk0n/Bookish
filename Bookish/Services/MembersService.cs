@@ -10,6 +10,7 @@ namespace Bookish.Services
     {
         IEnumerable<Member> GetAllMembers();
         void CreateMember(CreateMemberEntryModel postModel);
+        void RemoveMember(RemoveMemberEntryModel removeModel);
     }
     public class MembersService : IMemberService
     {
@@ -27,6 +28,13 @@ namespace Bookish.Services
             using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
 
             connection.Execute("INSERT INTO members (name) VALUES (@name);", postModel);
+        }
+
+        public void RemoveMember(RemoveMemberEntryModel removeModel)
+        {
+            using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
+
+            connection.Execute("DELETE FROM members id WHERE id = (@id);", removeModel);
         }
     }
 }

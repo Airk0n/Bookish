@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+    <h2>Members</h2>
+        <div>
+            <a asp-area="" asp-controller="Members" asp-action="ViewAvailableMembers">All Members </a> | 
+            <a asp-area="" asp-controller="Members" asp-action="CreateMember">Add Member </a> |
+            <a asp-area="" asp-controller="Members" asp-action="RemoveMember">Remove Member </a> |
+        </div>
+    <hr/>
+
+@RenderBody()
