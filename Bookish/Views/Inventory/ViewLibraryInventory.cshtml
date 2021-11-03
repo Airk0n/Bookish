@@ -1,15 +1,16 @@
 ﻿@model Bookish.Models.BooksViewModel
 
-
+@{
+    Layout = "_Inventory";
+}
 
 @{
-    <h2>Library Owned Books:</h2>
+    
     foreach (var book in @Model.Books)
     {
         <p>ID : @book.id</p>
         <p>Title : @book.Title</p>
         <br/>
     }
-    
 }
 
