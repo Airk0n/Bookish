@@ -58,6 +58,21 @@ namespace Bookish.Controllers
             _memberService.RemoveMember(removeMember);
             return RedirectToAction("ViewAvailableMembers");
         }
+
+        [HttpGet("edit")]
+        public IActionResult EditMember(SelectMemberModel selectMember)
+        {
+            var member = _memberService.GetMember(selectMember);
+            var viewmodel = new EditMemberViewModel{Member = member }; 
+            return View(viewmodel);
+        } 
+        
+        [HttpPost("edit")]
+        public IActionResult EditMember(UpdateMemberModel updateMember)
+        {
+            _memberService.EditMember(updateMember);
+            return RedirectToAction("ViewAvailableMembers");
+        }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

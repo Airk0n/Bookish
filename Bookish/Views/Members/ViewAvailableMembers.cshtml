@@ -12,6 +12,17 @@
             <tr>
                 <td>ID : @member.id </td>
                 <td>Name : @member.name </td>
+                <td>
+                    <form method = "get" action="/members/edit">
+                        <button id="id" name="id" value="@member.id">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="/members/delete">
+                        <button id="id" name="id" value="@member.id">Delete</button>
+                    </form>
+                </td>
+                
             </tr>
         }
     }

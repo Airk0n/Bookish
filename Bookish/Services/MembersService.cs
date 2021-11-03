@@ -11,6 +11,8 @@ namespace Bookish.Services
         IEnumerable<Member> GetAllMembers();
         void CreateMember(CreateMemberEntryModel postModel);
         void RemoveMember(RemoveMemberEntryModel removeModel);
+        void EditMember(UpdateMemberModel editModel);
+        Member GetMember(SelectMemberModel selectModel);
     }
     public class MembersService : IMemberService
     {
@@ -35,6 +37,21 @@ namespace Bookish.Services
             using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
 
             connection.Execute("DELETE FROM members id WHERE id = (@id);", removeModel);
+        }
+
+        public Member GetMember(SelectMemberModel selectModel)
+        {
+            using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
+
+            return connection.QuerySingle<Member>("SELECT * FROM members WHERE id = (@id)", selectModel);
+
+        }
+
+        public void EditMember(UpdateMemberModel editModel)
+        {
+            using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
+
+            connection.Execute("UPDATE members set name = (@name) WHERE id = (@id);", editModel);
         }
     }
 }

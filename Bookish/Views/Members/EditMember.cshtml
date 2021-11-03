@@ -1,0 +1,14 @@
+@model EditMemberViewModel
+@{
+    Layout = "_Members";
+}
+
+<form method = "post" action="/members/edit">
+    <fieldset>
+        <legend>Edit a member</legend>
+        <input type="hidden" name="id" value="@Model.Member.id"/>
+        <label for="name">Name</label><br/>
+        <input type="text" id="name" name="name" value="@Model.Member.name"/><br/>
+        <input type="submit"/>
+    </fieldset>
+</form>
