@@ -1,0 +1,19 @@
+﻿@model Bookish.Models.Request.RemoveMemberEntryModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Members";
+}
+<div class="create-new-member">
+    <form method = "post" action="/members/remove">
+        <fieldset>
+            <legend>REMOVE a Member</legend>
+            <label for="id">Member ID</label><br/>
+            <input type="number" id="id" name="id" alt="user id input box"/><br/>
+            <input type="submit"/>
+        </fieldset>
+    </form>
+</div>
+<hr/>
+
+

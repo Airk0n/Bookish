@@ -2,17 +2,19 @@
 
 @{
     ViewBag.Title = "title";
-    Layout = "_Layout";
+    Layout = "_Members";
 }
 
-@{
-    <h2>All Members</h2>
-    foreach (var member in @Model.Members)
-    {
-        <p>ID : @member.id </p>
-        <p>Name : @member.name </p>
-        <br/>
+<table>
+    @{
+        foreach (var member in @Model.Members)
+        {
+            <tr>
+                <td>ID : @member.id </td>
+                <td>Name : @member.name </td>
+            </tr>
+        }
     }
-    
-}
+</table>
+
 
