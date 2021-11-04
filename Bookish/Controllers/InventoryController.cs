@@ -18,8 +18,8 @@ namespace Bookish.Controllers
         [HttpGet("")]
         public IActionResult ViewLibraryInventory()
         {
-            var books = _inventoryService.GetOwnedBooks();
-            var viewModel = new BooksViewModel {Books = books};
+            var inventoryModels = _inventoryService.GetCurrentInventory();
+            var viewModel = new InventoryViewModel {Inventory = inventoryModels};
             return View(viewModel);
         }
         

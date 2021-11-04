@@ -1,16 +1,19 @@
-﻿@model Bookish.Models.BooksViewModel
+﻿@model Bookish.Models.InventoryViewModel
 
 @{
     Layout = "_Inventory";
 }
 
-@{
-    
-    foreach (var book in @Model.Books)
-    {
-        <p>ID : @book.id</p>
-        <p>Title : @book.Title</p>
-        <br/>
+<table class="membersTable">
+    @{
+        foreach (var inventoryModel in @Model.Inventory)
+        {
+            <tr>
+                <td>Title : @inventoryModel.Book.Title </td>
+                <td>Total Copies : @inventoryModel.Copies </td>
+                <td>Available Copies : @inventoryModel.AvailableCopies </td>
+            </tr>
+        }
     }
-}
+</table>
 
