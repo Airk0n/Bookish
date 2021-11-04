@@ -29,14 +29,14 @@ namespace Bookish.Services
         {
             using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
             
-            return connection.Query<Book>("SELECT id,Title FROM books");
+            return connection.Query<Book>("SELECT * FROM books");
         }
 
         public void CreateBook(CreateBookEntryModel postModel)
         {
             using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
 
-            connection.Execute("INSERT INTO books (title) VALUES (@Title);", postModel);
+            connection.Execute("INSERT INTO books (title, year, author, genre) VALUES (@Title, @Year, @Author, @Genre);", postModel);
             
         }
 
@@ -68,7 +68,8 @@ namespace Bookish.Services
         {
             using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
 
-            connection.Execute("UPDATE books set title = (@Title) WHERE id = (@id);", editModel);
+            connection.Execute("UPDATE books set title = (@Title), year = (@Year), author = (@Author), genre = (@Genre)  WHERE id = (@id);", editModel);
+            
         }
     }
 }
