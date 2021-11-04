@@ -33,7 +33,10 @@ namespace Bookish.Services
             IEnumerable<Book> allBooks = GetOwnedBooks();
             foreach (var book in allBooks)
             {
-                if (lastCheckedBook == book) continue;
+                if (lastCheckedBook != null)
+                {
+                    if (lastCheckedBook.id == book.id) continue;
+                }
                 lastCheckedBook = book;
                 int totalCopies = GetBookCount(book);
                 int availableCopies = totalCopies - GetAvailableCopies(book);
@@ -45,15 +48,15 @@ namespace Bookish.Services
         public int GetBookCount(Book bookToCount)
         {
             using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
-
-            return connection.QuerySingle<int>("SELECT COUNT(*) FROM inventory WHERE books_pkey = @bookToCount.id", bookToCount);
+            
+            return connection.QuerySingle<int>("SELECT COUNT(*) FROM inventory WHERE books_pkey = @id", bookToCount);
         }
 
         public int GetAvailableCopies(Book bookToCheck)
         {
             using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
             
-            return connection.QuerySingle<int>("SELECT COUNT(\"returnDate\" IS NULL) FROM transactions WHERE \"inventoryId\" = @bookToCheck.id", bookToCheck);
+            return connection.QuerySingle<int>("SELECT COUNT(\"returnDate\" IS NULL) FROM transactions WHERE \"inventoryId\" = @id", bookToCheck);
         }
         
     }
