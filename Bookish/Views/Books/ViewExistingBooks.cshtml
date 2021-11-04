@@ -9,9 +9,21 @@
     <h4>All The Books</h4>
     foreach (var book in @Model.Books)
     {
-        <p>ID : @book.id</p>
-        <p>Title : @book.Title</p>
-        <br/>
+        <tr>
+            <td>ID : @book.id</td>
+            <td>Title : @book.Title</td>
+            <td>
+                <form method = "get" action="/books/edit">
+                    <button class="btn btn-secondary" id="id" name="id" value="@book.id">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" action="/books/remove">
+                    <button class="btn btn-secondary" id="id" name="id" value="@book.id">Delete</button>
+                </form>
+                <hr/>
+            </td>
+        </tr>
     }
 }
 

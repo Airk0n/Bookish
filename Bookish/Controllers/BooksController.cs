@@ -54,6 +54,29 @@ namespace Bookish.Controllers
             var viewModel = new BooksViewModel {Books = matchingBooks};
             return View(viewModel);
         }
+
+        [HttpPost("remove")]
+        public IActionResult DeleteBook(DeleteBookEntryModel deleteBook)
+        {
+            _bookService.DeleteBook(deleteBook);
+            return RedirectToAction("ViewExistingBooks");
+        }
+        
+        [HttpGet("edit")]
+        public IActionResult EditBook(SelectBookModel selectBook)
+        {
+            var book = _bookService.GetBook(selectBook);
+            var viewmodel = new EditBookViewModel{Book = book }; 
+            return View(viewmodel);
+        } 
+        
+        [HttpPost("edit")]
+        public IActionResult BookMember(UpdateBookModel updateBook)
+        {
+            _bookService.EditBook(updateBook);
+            return RedirectToAction("ViewExistingBooks");
+        }
+        
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
