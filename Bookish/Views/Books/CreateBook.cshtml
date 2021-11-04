@@ -5,12 +5,20 @@
 }
 
 <div class="create-new-book">
-    <form method = "post" action="/books/create">
+    <form method = "post" class="form-inline" action="/books/create">
         <fieldset>
-            <legend>Add a new book</legend>
-            <label for="Title">Title</label><br/>
-            <input type="text" id="Title" name="Title" alt="user id input box"/><br/>
-            <input type="submit"/>
+            <h2>Create a book</h2>
+            <div class="form-group">
+                <label for="title">Title</label><br/>
+                <input class="form-control mx-2" type="text" id="title" name="title"/><br/>
+                <label for="year">Year</label><br/>
+                <input class="form-control mx-2" type="text" id="year" name="year"/><br/>
+                <label for="title">Author</label><br/>
+                <input class="form-control mx-2" type="text" id="author" name="author"/><br/>
+                <label for="genre">Genre</label><br/>
+                <input class="form-control mx-2" type="text" id="genre" name="genre"/><br/>
+            </div>
+            <input class="btn btn-secondary" type="submit"/>
         </fieldset>
     </form>
 </div>
