@@ -14,8 +14,10 @@ namespace Bookish.Services
     {
         IEnumerable<Book> GetAllBooks();
         void CreateBook(CreateBookEntryModel postModel);
-
         IEnumerable<Book> SearchBook(string searchCriteria);
+        Book GetBook(SelectBookModel selectModel);
+        void EditBook(UpdateBookModel editModel);
+        void DeleteBook(DeleteBookEntryModel removeModel);
     }
 
 
@@ -45,6 +47,28 @@ namespace Bookish.Services
             var parameters = new { Title = searchCriteria};
             
             return connection.Query<Book>("SELECT * FROM books WHERE title = @Title;", parameters);
+        }
+        
+        public void DeleteBook(DeleteBookEntryModel removeModel)
+        {
+            using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
+
+            connection.Execute("DELETE FROM books id WHERE id = (@id);", removeModel);
+        }
+        
+
+        public Book GetBook(SelectBookModel selectModel)
+        {
+            using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
+            
+            return connection.QuerySingle<Book>("SELECT * FROM books WHERE id = (@id)", selectModel);
+        }
+        
+        public void EditBook(UpdateBookModel editModel)
+        {
+            using var connection = new NpgsqlConnection(_connectionService.ConnectionString);
+
+            connection.Execute("UPDATE books set title = (@Title) WHERE id = (@id);", editModel);
         }
     }
 }

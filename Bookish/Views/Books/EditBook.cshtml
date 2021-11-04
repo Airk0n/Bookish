@@ -1,0 +1,17 @@
+@model EditBookViewModel
+
+@{
+    Layout = "_Books";
+}
+
+<form method = "post" class="form-inline" action="/books/edit">
+    <fieldset>
+        <h2>Edit a book</h2>
+        <div class="form-group">
+            <input type="hidden" name="id" value="@Model.Book.id"/>
+            <label for="title">Title</label><br/>
+            <input class="form-control mx-2" type="text" id="title" name="title" value="@Model.Book.Title"/><br/>
+        </div>
+        <input class="btn btn-secondary" type="submit"/>
+    </fieldset>
+</form>
