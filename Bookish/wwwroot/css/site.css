@@ -1,4 +1,6 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 .membersTable {
   border: #0f6674;
@@ -65,6 +67,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  font-family: "Roboto", sans-serif;
 }
 .footer {
   position: absolute;
